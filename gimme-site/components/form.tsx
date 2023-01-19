@@ -9,31 +9,47 @@ interface FormProps {
 }
 
 const Form: React.FC<FormProps> = (props) => {
-  const isPromptValid = props.prompt.length <= 32;
+  const isPromptValid = props.prompt.length < 32;
   const updatePromptValue = (text: string) => {
     if (text.length <= props.characterLimit) {
       props.setPrompt(text);
     }
   };
+  let statusColor = "text-slate-500";
+  let statusText = null;
+  if (!isPromptValid) {
+    statusColor = "text-red-400";
+    statusText = `Input must be less than ${props.characterLimit} characters.`;
+  }
   return (
     <>
-      <p>
-        Welcome to our AI-powered transcription and translation website! Our
-        cutting-edge technology allows for accurate transcription and
-        translation of video and audio content in any language.
-      </p>
-      <input
-        type="text"
-        placeholder="Your prompt"
-        value={props.prompt}
-        onChange={(e) => updatePromptValue(e.currentTarget.value)}
-      ></input>
-      <div>
-        {props.prompt.length}/{props.characterLimit}
+      <div className="mb-4">
+        <p className="pb-4 text-justify mb-2">
+          Welcome to our AI-powered transcription and translation website! Our
+          cutting-edge technology allows for accurate transcription and
+          translation of video and audio content in any language.
+        </p>
+        <input
+          className="p-2 w-full rounded-md focus:outline-green-700"
+          type="text"
+          placeholder="Coffee"
+          value={props.prompt}
+          onChange={(e) => updatePromptValue(e.currentTarget.value)}
+        ></input>
+        <div className={statusColor + " flex justify-between my-2 mb-6 text-sm"}>
+          <div>{statusText}</div>
+          <div>
+            {props.prompt.length}/{props.characterLimit}
+          </div>
+        </div>
+        <button
+          className="text-white text-lg bg-gradient-to-r from-green-800 to-green-500 disabled:opacity-50 w-full p-3 rounded-md"
+          onClick={props.onSubmit}
+          disabled={props.isLoading || !isPromptValid}
+        >
+          Submit
+        </button>
       </div>
-      <button onClick={props.onSubmit} disabled={props.isLoading || !isPromptValid}>
-        Submit
-      </button>
     </>
   );
 };
