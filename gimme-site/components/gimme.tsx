@@ -65,7 +65,7 @@ const Gimme: React.FC = () => {
       <div className="max-w-md m-auto p-4">
         <div className="bg-slate-100 bg-opacity-90 shadow-md p-6 rounded-md text-black">
           <div className="text-center my-6">
-            <Image src={logo} width={250} height={250} className="m-auto"/>
+            <Image alt="Company logo" src={logo} width={250} height={250} className="m-auto"/>
             <h1 className={gradientTextStyle + " text-3xl font-bold"}>Gimme!</h1>
           <div className={gradientTextStyle + " font-bold"}>Your AI branding assistant</div>
           </div>
