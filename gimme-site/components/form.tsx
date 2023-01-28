@@ -25,9 +25,9 @@ const Form: React.FC<FormProps> = (props) => {
     <>
       <div className="mb-4">
         <p className="pb-4 text-justify mb-2">
-          Welcome to our AI-powered transcription and translation website! Our
-          cutting-edge technology allows for accurate transcription and
-          translation of video and audio content in any language.
+          Unleash the potential of your brand with our AI-powered GPT-3
+          assistant - the ultimate tool for creating and maintaining a strong
+          brand identity for businesses of all sizes.
         </p>
         <input
           className="p-2 w-full rounded-md focus:outline-green-700"
@@ -36,7 +36,9 @@ const Form: React.FC<FormProps> = (props) => {
           value={props.prompt}
           onChange={(e) => updatePromptValue(e.currentTarget.value)}
         ></input>
-        <div className={statusColor + " flex justify-between my-2 mb-6 text-sm"}>
+        <div
+          className={statusColor + " flex justify-between my-2 mb-6 text-sm"}
+        >
           <div>{statusText}</div>
           <div>
             {props.prompt.length}/{props.characterLimit}
